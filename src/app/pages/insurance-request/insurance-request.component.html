@@ -1,0 +1,126 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-user">
+      <div class="card-header">
+        <h5 class="card-title">Insurance Request</h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="application" (ngSubmit)="create()">
+          <div class="row">
+            <div class="col-md-6 px-3">
+              <div class="form-group">
+                <label>Line of Business</label>
+                <select formControlName="lob" class="form-control">
+                  <option value="fire">fire</option>
+                  <option value="motor">motor</option>
+                  <option value="medical">medical</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6 px-3">
+              <div class="form-group">
+                <label>Product</label>
+                <select class="form-control">
+                  <option value="fire">fire</option>
+                  <option value="motor">motor</option>
+                  <option value="medical"> medical</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-12 px-3 py-3">
+              <h5 class="card-title">Customer Information</h5>
+            </div>
+            <div class="col-md-6 px-3">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Name</label>
+                <input type="text" class="form-control" placeholder="Name">
+              </div>
+            </div>
+            <div class="col-md-6 px-3">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Mobile</label>
+                <input type="tel" class="form-control" placeholder="Mobile">
+              </div>
+            </div>
+            <div class="col-md-6 px-3">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Email</label>
+                <input type="email" class="form-control" placeholder="Email">
+              </div>
+            </div>
+            <div class="col-md-6 px-3">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Target Premium</label>
+                <input type="number" class="form-control" placeholder="Target Premium	">
+              </div>
+            </div>
+          </div>
+          <div class="row" *ngIf="application.get('lob').value=='motor'">
+            <div class="col-md-12 px-3 py-3">
+              <h5 class="card-title">Important Information</h5>
+            </div>
+            <div class="col-md-6 px-3">
+              <div class="form-group">
+                <label>Product</label>
+                <select class="form-control">
+                  <option>fire</option>
+                  <option>motor</option>
+                  <option>medical</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6 px-3">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Sum Insured</label>
+                <input type="number" class="form-control" placeholder="Sum Insured">
+              </div>
+            </div>
+          </div>
+          <div class="row" *ngIf="application.get('lob').value=='medical'">
+            <div class="col-md-12 px-3 py-3">
+              <h5 class="card-title">Important Information</h5>
+            </div>
+            <div class="col-md-12 px-3">
+              <div class="form-group">
+                <label>Package for</label>
+                <select class="form-control">
+                  <option>Individual</option>
+                  <option>Family</option>
+                  <option>SME</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6 px-3">
+              <div class="form-group">
+                <label>Product</label>
+                <select class="form-control">
+                  <option>fire</option>
+                  <option>moto</option>
+                  <option>medica</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6 px-3">
+              <div class="form-group">
+                <label>Product</label>
+                <select class="form-control">
+                  <option>Elite</option>
+                  <option>Prestige</option>
+                  <option>Blue</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 px-3">
+              <button class="btn btn-primary btn-round btn-block">
+                Create Insurance Application
+              </button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
