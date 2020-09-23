@@ -1,4 +1,12 @@
 form .content {
   margin-top: 0px !important;
   padding: 0;
+  height: auto !important;
+  min-height: auto !important;
+}
+
+
+.main-panel .content {
+  height: auto !important;
+  min-height: auto !important;
 }

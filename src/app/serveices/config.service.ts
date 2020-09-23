@@ -32,6 +32,7 @@ export class ConfigService {
   public delete = "unlink"
   public write = "write"
   public getDashboard = "get_dashboard"
+  public LobAndProducts = "get_lob_and_products"
   /* filters */
   constructor(
     public shared: SharedService

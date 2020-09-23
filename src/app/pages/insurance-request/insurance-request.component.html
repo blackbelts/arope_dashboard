@@ -10,10 +10,8 @@
             <div class="col-md-6 px-3">
               <div class="form-group">
                 <label>Line of Business</label>
-                <select formControlName="lob" class="form-control">
-                  <option value="fire">fire</option>
-                  <option value="motor">motor</option>
-                  <option value="medical">medical</option>
+                <select formControlName="lob" class="form-control" (change)="lobChange($event)">
+                  <option *ngFor="let lob of lobList" [value]="lob.id">{{lob.name}}</option>
                 </select>
               </div>
             </div>
@@ -21,9 +19,7 @@
               <div class="form-group">
                 <label>Product</label>
                 <select class="form-control">
-                  <option value="fire">fire</option>
-                  <option value="motor">motor</option>
-                  <option value="medical"> medical</option>
+                  <option *ngFor="let product of selectedProducts" [value]="product.id">{{product.name}}</option>
                 </select>
               </div>
             </div>
@@ -55,7 +51,7 @@
               </div>
             </div>
           </div>
-          <div class="row" *ngIf="application.get('lob').value=='motor'">
+          <div class="row" *ngIf="selectedLobName=='Motor'">
             <div class="col-md-12 px-3 py-3">
               <h5 class="card-title">Important Information</h5>
             </div>
@@ -63,9 +59,9 @@
               <div class="form-group">
                 <label>Product</label>
                 <select class="form-control">
-                  <option>fire</option>
-                  <option>motor</option>
-                  <option>medical</option>
+                  <option *ngFor="let product of selectedQuoteProducts" [value]="product.id">
+                    {{product.name}}
+                  </option>
                 </select>
               </div>
             </div>
@@ -76,17 +72,17 @@
               </div>
             </div>
           </div>
-          <div class="row" *ngIf="application.get('lob').value=='medical'">
+          <div class="row" *ngIf="selectedLobName=='Medical'">
             <div class="col-md-12 px-3 py-3">
               <h5 class="card-title">Important Information</h5>
             </div>
             <div class="col-md-12 px-3">
               <div class="form-group">
                 <label>Package for</label>
-                <select class="form-control">
-                  <option>Individual</option>
-                  <option>Family</option>
-                  <option>SME</option>
+                <select class="form-control" formControlName="packageFor" (change)="packageForChange($event)">
+                  <option value="individual">Individual</option>
+                  <option value="family">Family</option>
+                  <option value="sme">SME</option>
                 </select>
               </div>
             </div>
@@ -94,20 +90,14 @@
               <div class="form-group">
                 <label>Product</label>
                 <select class="form-control">
-                  <option>fire</option>
-                  <option>moto</option>
-                  <option>medica</option>
+                  <option *ngFor="let product of medicalProducts" [value]="product.id">{{product.name}}</option>
                 </select>
               </div>
             </div>
             <div class="col-md-6 px-3">
               <div class="form-group">
                 <label>Product</label>
-                <select class="form-control">
-                  <option>Elite</option>
-                  <option>Prestige</option>
-                  <option>Blue</option>
-                </select>
+                <input type="file" formControlName="file" class="form-control">
               </div>
             </div>
           </div>
