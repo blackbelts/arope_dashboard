@@ -19,8 +19,8 @@ export class InsuranceRequestComponent implements OnInit {
   quoteProducts = []
   selectedQuoteProducts = []
   medicalProducts = []
-  selectedLobName
-  pepoleGroup = []
+  selectedLobName = ''
+  peopleGroup = []
   constructor(
     public fb: FormBuilder,
     public router: Router,
@@ -38,7 +38,6 @@ export class InsuranceRequestComponent implements OnInit {
     this.application = this.fb.group({
       lob: ['', Validators.required],
       packageFor: ['', Validators.required],
-      file:[]
     })
   }
 
@@ -65,11 +64,34 @@ export class InsuranceRequestComponent implements OnInit {
   packageForChange(e) {
     this.medicalProducts = []
     let searchQuery = this.application.get("packageFor").value == 'family' ? 'individual' : this.application.get("packageFor").value
+    if (this.application.get("packageFor").value == "family" || this.application.get("packageFor").value == "sme") {
+      this.peopleGroup = []
+      this.peopleGroup.push({
+        name: '',
+        type: '',
+        gender: '',
+        birthOfDate: '',
+      })
+    }
     this.selectedQuoteProducts.forEach(product => {
       if (product["package"] == searchQuery) {
         this.medicalProducts.push(product)
       }
     })
+  }
+  addAnotherPerson(e) {
+    /*  e.preventDefault() */
+    this.peopleGroup.push({
+      name: '',
+      type: '',
+      gender: '',
+      birthOfDate: '',
+    })
+  }
+  deletePerson(index) {
+    if (index > 0) {
+      this.peopleGroup.splice(index, 1)
+    }
   }
   create() {
     console.log(this.application.value)
