@@ -3,11 +3,11 @@
     <div class="card">
       <div class="card-header">
         <div class="row">
-          <h4 class="card-title col-md-6"> Policies Table</h4>
+          <h4 class="card-title col-md-6"> Claims Table</h4>
           <form class="col-md-6">
             <div class="input-group no-border">
-              <input (input)="searchPolicy($event)" type="text" value="" class="form-control"
-                placeholder="Search by policy number...">
+              <input (input)="searchClaim($event)" type="text" value="" class="form-control"
+                placeholder="Search by claim number...">
               <div class="input-group-append">
                 <div class="input-group-text">
                   <i class="nc-icon nc-zoom-split"></i>
@@ -23,31 +23,17 @@
             <thead class=" text-primary">
               <th>Policy NO</th>
               <th>Product</th>
-              <th>Net Prem</th>
-              <!-- <th>Charges</th>
-              <th>Fixed stamps</th>
-              <th>Policy cost</th>
-              <th>Tax</th> -->
-              <th>Issue</th>
-              <th>First Inception</th>
-              <th>Inception</th>
-              <th>End to</th>
-              <th>Total Pre</th>
+              <th>Total LC</th>
+              <th>Due Date</th>
+              <th>Paid Date</th>
             </thead>
             <tbody>
-              <tr *ngFor="let policy of policies">
-                <td>{{policy.policy_num}}</td>
-                <td>{{policy.product}}</td>
-                <td class="text-right">{{policy.net_premium}}</td>
-                <!-- <td class="text-right">{{policy.charges}}</td>
-                <td class="text-right">{{policy.fixed_stamps}}</td>
-                <td class="text-right">{{policy.policy_cost}}</td>
-                <td class="text-right">{{policy.tax}}</td> -->
-                <td>{{policy.issue_date}}</td>
-                <td>{{policy.first_inception_date}}</td>
-                <td>{{policy.inception_date}}</td>
-                <td>{{policy.expiry_date}}</td>
-                <td class="text-right">{{policy.totoal_premium}}</td>
+              <tr *ngFor="let collection of collections">
+                <td>{{collection.policy_no}}</td>
+                <td>{{collection.product}}</td>
+                <td>{{collection.total_lc}}</td>
+                <td>{{collection.due_date}}</td>
+                <td>{{collection.paid_date}}</td>
               </tr>
             </tbody>
           </table>

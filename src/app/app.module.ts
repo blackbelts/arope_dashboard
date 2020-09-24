@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { from } from 'rxjs';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InsuranceRequestComponent } from './pages/insurance-request/insurance-request.component';
+import { CollectionsComponent } from './pages/collections/collections.component';
 @NgModule({
   declarations: [
     AppComponent,

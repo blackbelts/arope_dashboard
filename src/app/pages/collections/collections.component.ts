@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { OdooService } from 'app/serveices/odoo.service';
 
 @Component({
-  selector: 'app-claims',
-  templateUrl: './claims.component.html',
-  styleUrls: ['./claims.component.css']
+  selector: 'app-collections',
+  templateUrl: './collections.component.html',
+  styleUrls: ['./collections.component.css']
 })
-export class ClaimsComponent implements OnInit {
-  claims = []
+export class CollectionsComponent implements OnInit {
+
+  collections = []
   offset = 0
   limit = 10
   count = 0
@@ -18,12 +19,12 @@ export class ClaimsComponent implements OnInit {
     this.getClaims()
   }
   getClaims() {
-    this.odoo.getClaims(this.limit, this.offset, this.searchQuery)
+    this.odoo.getCollections(this.limit, this.offset, this.searchQuery)
       .then(res => {
         this.offset += this.limit
         console.log(res)
         this.count = parseInt(JSON.parse(JSON.stringify(res)).data.count)
-        this.claims = JSON.parse(JSON.stringify(res)).data.claims
+        this.collections = JSON.parse(JSON.stringify(res)).data.unpaids
       })
   }
   ngOnInit(): void {
@@ -50,5 +51,6 @@ export class ClaimsComponent implements OnInit {
     this.offset = 0
     this.getClaims()
   }
+
 
 }

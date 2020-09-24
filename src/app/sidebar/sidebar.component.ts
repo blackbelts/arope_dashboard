@@ -19,6 +19,7 @@ export const ROUTES: RouteInfo[] = [
     // { path: '/upgrade',       title: 'Upgrade to PRO',    icon:'nc-spaceship',  class: 'active-pro' },
     { path: "/dashboard/policies", title: "My Policies", icon: "nc-paper", class: "" },
     { path: "/dashboard/claims", title: "My Claims", icon: "nc-paper", class: "" },
+    { path: "/dashboard/collections", title: "My Collections", icon: "nc-paper", class: "" },
     { path: "/dashboard/insurance-list", title: "Insurance Applications", icon: "nc-paper", class: "" },
     { path: "/dashboard/insurance-application", title: "Insurance Request", icon: "nc-simple-add", class: "" },
 

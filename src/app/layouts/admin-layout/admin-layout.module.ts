@@ -20,6 +20,7 @@ import { ClaimsComponent } from 'app/pages/claims/claims.component';
 import { InsuranceRequestComponent } from 'app/pages/insurance-request/insurance-request.component';
 import { InsuranceRequestStepperComponent } from 'app/pages/insurance-request-stepper/insurance-request-stepper.component';
 import { InsuranceRequestListComponent } from 'app/pages/insurance-request-list/insurance-request-list.component';
+import { CollectionsComponent } from 'app/pages/collections/collections.component';
 
 @NgModule({
   imports: [
@@ -43,6 +44,7 @@ import { InsuranceRequestListComponent } from 'app/pages/insurance-request-list/
     InsuranceRequestComponent,
     InsuranceRequestStepperComponent,
     InsuranceRequestListComponent,
+    CollectionsComponent
   ]
 })
 

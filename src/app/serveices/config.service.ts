@@ -33,6 +33,9 @@ export class ConfigService {
   public write = "write"
   public getDashboard = "get_dashboard"
   public LobAndProducts = "get_lob_and_products"
+  public getPolicies = "get_policy"
+  public getClaims = "get_claim"
+  public getCollections = "get_unpaid"
   /* filters */
   constructor(
     public shared: SharedService

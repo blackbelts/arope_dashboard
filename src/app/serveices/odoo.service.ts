@@ -150,4 +150,80 @@ export class OdooService {
       })
     })
   }
+  getPolicies(limit, offset, policy_num) {
+    if (policy_num == '')
+      policy_num = false
+    return new Promise((resolve, reject) => {
+      this.http.post(
+        this.config.allMethode
+        + this.config.aropeBrokerModel
+        + this.config.getPolicies, {
+        "paramlist": {
+          data: {
+            id: parseInt(this.shared.user_id),
+            limit: limit,
+            offset: offset,
+            policy_num: policy_num
+          }
+        }
+      },
+        { headers: this.headers }
+      ).subscribe(res => {
+        resolve(res);
+      }, error => {
+        reject(error)
+      })
+    })
+  }
+  getClaims(limit, offset, claim_num) {
+    if (claim_num == '')
+      claim_num = false
+    return new Promise((resolve, reject) => {
+      this.http.post(
+        this.config.allMethode
+        + this.config.aropeBrokerModel
+        + this.config.getClaims, {
+        "paramlist": {
+          data: {
+            id: parseInt(this.shared.user_id),
+            limit: limit,
+            offset: offset,
+            claim_no: claim_num
+          }
+        }
+      },
+        { headers: this.headers }
+      ).subscribe(res => {
+        resolve(res);
+      }, error => {
+        reject(error)
+      })
+    })
+  }
+  getCollections(limit, offset, policy_num) {
+    if (policy_num == '')
+      policy_num = false
+    return new Promise((resolve, reject) => {
+      this.http.post(
+        this.config.allMethode
+        + this.config.aropeBrokerModel
+        + this.config.getCollections, {
+        "paramlist": {
+          data: {
+            id: parseInt(this.shared.user_id),
+            limit: limit,
+            offset: offset,
+            policy_num: policy_num
+          }
+        }
+      },
+        { headers: this.headers }
+      ).subscribe(res => {
+        resolve(res);
+      }, error => {
+        reject(error)
+      })
+    })
+  }
 }
+
