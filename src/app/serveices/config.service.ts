@@ -36,6 +36,7 @@ export class ConfigService {
   public getPolicies = "get_policy"
   public getClaims = "get_claim"
   public getCollections = "get_unpaid"
+  public createInsuranceApplication = "create_insurance_app"
   /* filters */
   constructor(
     public shared: SharedService

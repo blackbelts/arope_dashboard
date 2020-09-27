@@ -20,9 +20,9 @@ export const ROUTES: RouteInfo[] = [
     { path: "/dashboard/policies", title: "My Policies", icon: "nc-paper", class: "" },
     { path: "/dashboard/claims", title: "My Claims", icon: "nc-paper", class: "" },
     { path: "/dashboard/collections", title: "My Collections", icon: "nc-paper", class: "" },
-    { path: "/dashboard/insurance-list", title: "Insurance Applications", icon: "nc-paper", class: "" },
-    { path: "/dashboard/insurance-application", title: "Insurance Request", icon: "nc-simple-add", class: "" },
-
+    { path: "/dashboard/renewals", title: "Renewals", icon: "nc-paper", class: "" },
+    { path: "/dashboard/insurance-list", title: "Your Business", icon: "nc-paper", class: "" },
+    { path: "/dashboard/insurance-application", title: "New Business", icon: "nc-simple-add", class: "" },
 
 ];
 

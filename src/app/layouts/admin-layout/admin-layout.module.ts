@@ -21,6 +21,7 @@ import { InsuranceRequestComponent } from 'app/pages/insurance-request/insurance
 import { InsuranceRequestStepperComponent } from 'app/pages/insurance-request-stepper/insurance-request-stepper.component';
 import { InsuranceRequestListComponent } from 'app/pages/insurance-request-list/insurance-request-list.component';
 import { CollectionsComponent } from 'app/pages/collections/collections.component';
+import { RenewalsComponent } from 'app/pages/renewals/renewals.component';
 
 @NgModule({
   imports: [
@@ -44,7 +45,8 @@ import { CollectionsComponent } from 'app/pages/collections/collections.componen
     InsuranceRequestComponent,
     InsuranceRequestStepperComponent,
     InsuranceRequestListComponent,
-    CollectionsComponent
+    CollectionsComponent,
+    RenewalsComponent
   ]
 })
 

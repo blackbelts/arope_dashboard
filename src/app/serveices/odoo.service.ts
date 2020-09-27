@@ -225,5 +225,24 @@ export class OdooService {
       })
     })
   }
+  createInsuranceApplication(data) {
+    return new Promise((resolve, reject) => {
+      this.http.post(
+        this.config.allMethode
+        + this.config.aropeBrokerModel
+        + this.config.createInsuranceApplication, {
+        "paramlist": {
+          data: data
+        }
+      },
+        { headers: this.headers }
+      ).subscribe(res => {
+        resolve(res);
+      }, error => {
+        reject(error)
+      })
+    })
+
+  }
 }
 

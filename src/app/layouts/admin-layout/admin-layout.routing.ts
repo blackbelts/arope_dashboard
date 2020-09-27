@@ -14,6 +14,7 @@ import { InsuranceRequestComponent } from 'app/pages/insurance-request/insurance
 import { InsuranceRequestListComponent } from 'app/pages/insurance-request-list/insurance-request-list.component';
 import { InsuranceRequestStepperComponent } from 'app/pages/insurance-request-stepper/insurance-request-stepper.component';
 import { CollectionsComponent } from 'app/pages/collections/collections.component';
+import { RenewalsComponent } from 'app/pages/renewals/renewals.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'home', component: DashboardComponent },
@@ -29,5 +30,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: "insurance-application", component: InsuranceRequestComponent },
     { path: "insurance-list", component: InsuranceRequestListComponent },
     { path: "ins-application-status", component: InsuranceRequestStepperComponent },
-    { path: "collections", component: CollectionsComponent }
+    { path: "collections", component: CollectionsComponent },
+    { path: "renewals", component: RenewalsComponent }
 ];
