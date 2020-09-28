@@ -10,7 +10,7 @@
             <div class="col-md-6 px-3">
               <div class="form-group">
                 <label>Line of Business</label>
-                <select formControlName="lob" class="form-control" (change)="lobChange($event)">
+                <select  formControlName="lob" class="form-control" (change)="lobChange($event)">
                   <option *ngFor="let lob of lobList" [value]="lob.id">{{lob.name}}</option>
                 </select>
               </div>
@@ -114,26 +114,27 @@
             <div class="col-md-6 px-3">
               <div class="form-group">
                 <label>Product</label>
-                <select class="form-control">
+                <select formControlName="product" class="form-control">
                   <option *ngFor="let product of medicalProducts" [value]="product.id">{{product.name}}</option>
                 </select>
               </div>
             </div>
             <div class="col-12"
-              *ngIf="application.get('packageFor').value=='family'||application.get('packageFor').value=='sme'">
+              *ngIf="application.get('package').value=='family'||application.get('package').value=='sme'">
               <div class="row">
                 <div class="col-12" *ngFor="let person of peopleGroup; let i=index">
                   <div class="row">
                     <div class="col-3">
                       <div class="form-group">
                         <label for="exampleInputEmail1">Name</label>
-                        <input type="text" class="form-control" placeholder="Name">
+                        <input [(ngModel)]="person.name" [ngModelOptions]="{standalone: true}" type="text"
+                          class="form-control" placeholder="Name">
                       </div>
                     </div>
                     <div class="col-3">
                       <div class="form-group">
                         <label>Type</label>
-                        <select class="form-control">
+                        <select [(ngModel)]="person.type" [ngModelOptions]="{standalone: true}" class="form-control">
                           <option value="spouse">Spouse</option>
                           <option value="kid">Kid</option>
                           <option value="brother">Brother</option>
@@ -146,16 +147,17 @@
                     <div class="col-2">
                       <div class="form-group">
                         <label>Gender</label>
-                        <select class="form-control">
-                          <option value="m">Male</option>
-                          <option value="f">Female</option>
+                        <select [(ngModel)]="person.gender" [ngModelOptions]="{standalone: true}" class="form-control">
+                          <option value="M">Male</option>
+                          <option value="F">Female</option>
                         </select>
                       </div>
                     </div>
                     <div class="col-3">
                       <div class="form-group">
                         <label>Date of birth</label>
-                        <input type="date" class="form-control">
+                        <input [(ngModel)]="person.dob" [ngModelOptions]="{standalone: true}" type="date"
+                          class="form-control">
                       </div>
                     </div>
                     <div class="col-1">
@@ -174,11 +176,15 @@
               </div>
             </div>
             <div class="col-md-12 px-3"
-              *ngIf="application.get('packageFor').value==''||application.get('packageFor').value=='individual'">
+              *ngIf="application.get('package').value==''||application.get('package').value=='individual'">
               <div class="form-group">
                 <label>Date Of Birth</label>
-                <input type="date" class="form-control">
+                <input formControlName="dob" type="date" class="form-control">
               </div>
+            </div>
+            <div *ngIf="AppInfo != undefined" class="col-md-12 px-3">
+              <p class="text-center">Premium</p>
+              <h2 class="text-center">{{AppInfo.price}}</h2>
             </div>
           </div>
           <div class="row">
@@ -187,18 +193,20 @@
                 Create New Business
               </button>
             </div>
-            <div class="col-md-4 px-3" *ngIf="selectedLobName=='Medical'||selectedLobName=='Motor'">
+            <div class="{{AppInfo == undefined?'col-md-12':'col-md-4'}} px-3"
+              *ngIf="selectedLobName=='Medical'||selectedLobName=='Motor'">
               <button (click)="create()" type="submit" class="btn btn-primary btn-round btn-block">
                 Get A Quote
               </button>
             </div>
-            <div class="col-md-4 px-3" *ngIf="selectedLobName=='Medical'||selectedLobName=='Motor'">
-              <button class="btn btn-primary btn-round btn-block">
+            <div class="col-md-4 px-3"
+              *ngIf="(selectedLobName=='Medical'||selectedLobName=='Motor')&&AppInfo != undefined">
+              <button (click)="acceptQuote()" class="btn btn-primary btn-round btn-block">
                 Accept
               </button>
             </div>
-            <div class="col-md-4 px-3" *ngIf="selectedLobName=='Medical'||selectedLobName=='Motor'">
-              <button class="btn btn-primary btn-round btn-block">
+            <div class="col-md-4 px-3" *ngIf="(selectedLobName=='Medical'||selectedLobName=='Motor')&&AppInfo != undefined">
+              <button (click)="rejectQuote()" class="btn btn-primary btn-round btn-block">
                 Reject
               </button>
             </div>

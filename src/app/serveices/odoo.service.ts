@@ -225,6 +225,32 @@ export class OdooService {
       })
     })
   }
+  getInsuranceAppList(limit, offset, app_num) {
+    if (app_num == '')
+      app_num = false
+    return new Promise((resolve, reject) => {
+      this.http.post(
+        this.config.allMethode
+        + this.config.aropeBrokerModel
+        + this.config.insuranceApplicationsList, {
+        "paramlist": {
+          data: {
+            id: parseInt(this.shared.user_id),
+            limit: limit,
+            offset: offset,
+            app_num: app_num
+          }
+        }
+      },
+        { headers: this.headers }
+      ).subscribe(res => {
+        resolve(res);
+      }, error => {
+        reject(error)
+      })
+    })
+
+  }
   createInsuranceApplication(data) {
     return new Promise((resolve, reject) => {
       this.http.post(
@@ -242,7 +268,43 @@ export class OdooService {
         reject(error)
       })
     })
+  }
+  rejectPrice(id) {
+    return new Promise((resolve, reject) => {
+      this.http.post(
+        this.config.allMethode
+        + this.config.aropeBrokerModel
+        + this.config.rejectPrice, {
+        "paramlist": {
+          data: id
+        }
+      },
+        { headers: this.headers }
+      ).subscribe(res => {
+        resolve(res);
+      }, error => {
+        reject(error)
+      })
+    })
 
+  }
+  approvePrice(id) {
+    return new Promise((resolve, reject) => {
+      this.http.post(
+        this.config.allMethode
+        + this.config.aropeBrokerModel
+        + this.config.approvePrice, {
+        "paramlist": {
+          data: id
+        }
+      },
+        { headers: this.headers }
+      ).subscribe(res => {
+        resolve(res);
+      }, error => {
+        reject(error)
+      })
+    })
   }
 }
 

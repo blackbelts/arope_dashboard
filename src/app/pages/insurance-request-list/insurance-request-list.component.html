@@ -2,277 +2,58 @@
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">
-        <h4 class="card-title"> Insurance Requests List</h4>
+        <div class="row">
+          <h4 class="card-title col-md-6"> Applications Table</h4>
+          <form class="col-md-6">
+            <div class="input-group no-border">
+              <input (input)="searchApplication($event)" type="text" value="" class="form-control"
+                placeholder="Search by Application number...">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <i class="nc-icon nc-zoom-split"></i>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
       <div class="card-body">
         <div class="table-responsive">
           <table class="table">
             <thead class=" text-primary">
-              <th>
-                Name
-              </th>
-              <th>
-                Country
-              </th>
-              <th>
-                Name
-              </th>
-              <th>
-                Country
-              </th>
-              <th>
-                City
-              </th>
-              <th class="text-right">
-                Salary
-              </th>
-              <th class="text-right">
-                Salary
-              </th>
-              <th class="text-right">
-                Salary
-              </th>
+              <th>Name</th>
+              <th>Mobile</th>
+              <th>App no</th>
+              <th>App Date</th>
+              <th>LOB</th>
+              <th>Product</th>
+              <th>Target Premium</th>
+              <th>State</th>
             </thead>
             <tbody>
-
-              <tr>
-                <td>
-                  Minerva Hooper
-                </td>
-                <td>
-                  Curaçao
-                </td>
-                <td>
-                  Sinaai-Waas
-                </td>
-                <td>
-                  Curaçao
-                </td>
-                <td>
-                  Sinaai-Waas
-                </td>
-                <td class="text-right">
-                  $23,789
-                </td>
-                <td class="text-right">
-                  $23,789
-                </td>
-                <td class="text-right">
-                  $23,789
-                </td>
+              <tr *ngFor="let application of applications" (click)="applicationDetails(application)">
+                <td>{{application.name}}</td>
+                <td>{{application.phone}}</td>
+                <td>{{application.application_number}}</td>
+                <td>{{application.application_date}}</td>
+                <td>{{application.lob[1]}}</td>
+                <td>{{application.product[1]}}</td>
+                <td>{{application.target_price}}</td>
+                <td>{{application.state}}</td>
               </tr>
-              <tr>
-                <td>
-                  Minerva Hooper
-                </td>
-                <td>
-                  Curaçao
-                </td>
-                <td>
-                  Sinaai-Waas
-                </td>
-                <td>
-                  Curaçao
-                </td>
-                <td>
-                  Sinaai-Waas
-                </td>
-                <td class="text-right">
-                  $23,789
-                </td>
-                <td class="text-right">
-                  $23,789
-                </td>
-                <td class="text-right">
-                  $23,789
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Minerva Hooper
-                </td>
-                <td>
-                  Curaçao
-                </td>
-                <td>
-                  Sinaai-Waas
-                </td>
-                <td>
-                  Curaçao
-                </td>
-                <td>
-                  Sinaai-Waas
-                </td>
-                <td class="text-right">
-                  $23,789
-                </td>
-                <td class="text-right">
-                  $23,789
-                </td>
-                <td class="text-right">
-                  $23,789
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Minerva Hooper
-                </td>
-                <td>
-                  Curaçao
-                </td>
-                <td>
-                  Sinaai-Waas
-                </td>
-                <td>
-                  Curaçao
-                </td>
-                <td>
-                  Sinaai-Waas
-                </td>
-                <td class="text-right">
-                  $23,789
-                </td>
-                <td class="text-right">
-                  $23,789
-                </td>
-                <td class="text-right">
-                  $23,789
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Minerva Hooper
-                </td>
-                <td>
-                  Curaçao
-                </td>
-                <td>
-                  Sinaai-Waas
-                </td>
-                <td>
-                  Curaçao
-                </td>
-                <td>
-                  Sinaai-Waas
-                </td>
-                <td class="text-right">
-                  $23,789
-                </td>
-                <td class="text-right">
-                  $23,789
-                </td>
-                <td class="text-right">
-                  $23,789
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Minerva Hooper
-                </td>
-                <td>
-                  Curaçao
-                </td>
-                <td>
-                  Sinaai-Waas
-                </td>
-                <td>
-                  Curaçao
-                </td>
-                <td>
-                  Sinaai-Waas
-                </td>
-                <td class="text-right">
-                  $23,789
-                </td>
-                <td class="text-right">
-                  $23,789
-                </td>
-                <td class="text-right">
-                  $23,789
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Minerva Hooper
-                </td>
-                <td>
-                  Curaçao
-                </td>
-                <td>
-                  Sinaai-Waas
-                </td>
-                <td>
-                  Curaçao
-                </td>
-                <td>
-                  Sinaai-Waas
-                </td>
-                <td class="text-right">
-                  $23,789
-                </td>
-                <td class="text-right">
-                  $23,789
-                </td>
-                <td class="text-right">
-                  $23,789
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Minerva Hooper
-                </td>
-                <td>
-                  Curaçao
-                </td>
-                <td>
-                  Sinaai-Waas
-                </td>
-                <td>
-                  Curaçao
-                </td>
-                <td>
-                  Sinaai-Waas
-                </td>
-                <td class="text-right">
-                  $23,789
-                </td>
-                <td class="text-right">
-                  $23,789
-                </td>
-                <td class="text-right">
-                  $23,789
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Minerva Hooper
-                </td>
-                <td>
-                  Curaçao
-                </td>
-                <td>
-                  Sinaai-Waas
-                </td>
-                <td>
-                  Curaçao
-                </td>
-                <td>
-                  Sinaai-Waas
-                </td>
-                <td class="text-right">
-                  $23,789
-                </td>
-                <td class="text-right">
-                  $23,789
-                </td>
-                <td class="text-right">
-                  $23,789
-                </td>
-              </tr>
-
             </tbody>
           </table>
         </div>
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-end">
+            <li [class]="offset==limit||count==0?'page-item disabled':'page-item'" (click)="previous()">
+              <a class="page-link" tabindex="-1">Previous</a>
+            </li>
+            <li [class]="(offset<count)?'page-item':'page-item disabled'" (click)="next()">
+              <a class="page-link" tabindex="-1">Next</a>
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
   </div>

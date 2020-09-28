@@ -29,7 +29,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: "policies", component: PoliciesComponent },
     { path: "insurance-application", component: InsuranceRequestComponent },
     { path: "insurance-list", component: InsuranceRequestListComponent },
-    { path: "ins-application-status", component: InsuranceRequestStepperComponent },
+    { path: "ins-application-status/:id", component: InsuranceRequestStepperComponent },
     { path: "collections", component: CollectionsComponent },
     { path: "renewals", component: RenewalsComponent }
 ];

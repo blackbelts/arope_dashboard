@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Stepper from "bs-stepper";
 import { FormGroup, FormBuilder, Validators, ValidationErrors } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { OdooService } from 'app/serveices/odoo.service';
 import { SharedService } from 'app/serveices/shared.service';
 
@@ -22,6 +22,7 @@ export class InsuranceRequestComponent implements OnInit {
   selectedLobName = ''
   peopleGroup = []
   AppInfo: any
+  applicationData: any
   constructor(
     public fb: FormBuilder,
     public router: Router,
@@ -51,7 +52,8 @@ export class InsuranceRequestComponent implements OnInit {
       price: ["", Validators.required],
       brand: ["", Validators.required],
       sum_insured: ["", Validators.required],
-      deductible: [""]
+      family_age: false,
+      deductible: [false]
     })
   }
 
@@ -79,16 +81,22 @@ export class InsuranceRequestComponent implements OnInit {
       const isured = this.application.get("sum_insured")
       console.log("Fire")
       this.application.get("sum_insured").setValidators(null)
+      this.application.get("sum_insured").setValue(false)
       this.application.get("sum_insured").updateValueAndValidity()
       this.application.get("brand").setValidators(null)
+      this.application.get("brand").setValue(false)
       this.application.get("brand").updateValueAndValidity()
       this.application.get("price").setValidators(null)
+      this.application.get("price").setValue(false)
       this.application.get("price").updateValueAndValidity()
       this.application.get("product").setValidators(null)
+      this.application.get("product").setValue(false)
       this.application.get("product").updateValueAndValidity()
       this.application.get("dob").setValidators(null)
+      this.application.get("dob").setValue(false)
       this.application.get("dob").updateValueAndValidity()
       this.application.get("package").setValidators(null)
+      this.application.get("package").setValue(false)
       this.application.get("package").updateValueAndValidity()
     }
     if (this.selectedLobName == "Motor") {
@@ -101,9 +109,32 @@ export class InsuranceRequestComponent implements OnInit {
       this.application.get("price").setValidators(null)
       this.application.get("price").updateValueAndValidity()
       this.application.get("dob").setValidators(null)
+      this.application.get("dob").setValue(false)
       this.application.get("dob").updateValueAndValidity()
       this.application.get("package").setValidators(null)
+      this.application.get("package").setValue(false)
       this.application.get("package").updateValueAndValidity()
+
+    }
+    if (this.selectedLobName == "Medical") {
+      this.application.get("price").setValidators(null)
+      this.application.get("price").updateValueAndValidity()
+      this.application.get("package").setValidators(Validators.required)
+      this.application.get("package").updateValueAndValidity()
+      this.application.get("dob").setValidators(Validators.required)
+      this.application.get("dob").setValue('')
+      this.application.get("dob").updateValueAndValidity()
+      this.application.get("product").setValidators(Validators.required)
+      this.application.get("product").updateValueAndValidity()
+      this.application.get("sum_insured").setValidators(null)
+      this.application.get("sum_insured").setValue(false)
+      this.application.get("sum_insured").updateValueAndValidity()
+      this.application.get("brand").setValidators(null)
+      this.application.get("brand").setValue(false)
+      this.application.get("brand").updateValueAndValidity()
+      this.application.get("deductible").setValidators(null)
+      this.application.get("deductible").setValue(false)
+      this.application.get("deductible").updateValueAndValidity()
     }
   }
   /*
@@ -113,13 +144,20 @@ export class InsuranceRequestComponent implements OnInit {
     this.medicalProducts = []
     let searchQuery = this.application.get("package").value == 'family' ? 'individual' : this.application.get("package").value
     if (this.application.get("package").value == "family" || this.application.get("package").value == "sme") {
+      this.application.get("dob").setValidators(null)
+      this.application.get("dob").setValue(false)
+      this.application.get("dob").updateValueAndValidity()
       this.peopleGroup = []
       this.peopleGroup.push({
         name: '',
         type: '',
         gender: '',
-        birthOfDate: '',
+        dob: '',
       })
+    } else {
+      this.application.get("family_age").setValidators(null)
+      this.application.get("family_age").setValue(false)
+      this.application.get("family_age").updateValueAndValidity()
     }
     this.selectedQuoteProducts.forEach(product => {
       if (product["package"] == searchQuery) {
@@ -130,12 +168,11 @@ export class InsuranceRequestComponent implements OnInit {
 
   brandChange(e) {
     if (this.application.get("brand").value == 'all brands') {
-      console.log("iffffffffffff")
       this.application.get("deductible").setValidators(Validators.required)
       this.application.get("deductible").updateValueAndValidity()
     } else {
-      console.log("elsssssssssss")
       this.application.get("deductible").setValidators(null)
+      this.application.get("deductible").setValue(false)
       this.application.get("deductible").updateValueAndValidity()
     }
   }
@@ -146,7 +183,7 @@ export class InsuranceRequestComponent implements OnInit {
       name: '',
       type: '',
       gender: '',
-      birthOfDate: '',
+      dob: '',
     })
   }
   /* delete item from group (sme) or family in medical line of business */
@@ -159,6 +196,12 @@ export class InsuranceRequestComponent implements OnInit {
   create() {
 
     if (this.application.valid) {
+      if (this.application.get("package").value == 'family' || this.application.get("package").value == 'sme') {
+        this.application.get("family_age").setValue(this.peopleGroup)
+        console.log(this.peopleGroup)
+        /* this.application.addControl */
+        /* this.peopleGroup.forEach */
+      }
       this.application.get("lob").setValue(parseInt(this.application.get("lob").value))
       this.application.get("product_id").setValue(parseInt(this.application.get("product_id").value))
       if (this.application.get("product").value != '')
@@ -166,10 +209,35 @@ export class InsuranceRequestComponent implements OnInit {
       this.application.get("id").setValue(this.AppInfo != undefined ? parseInt(this.AppInfo.id) : false)
       console.log("form validation", this.application.valid)
       console.log(this.application.value)
-      this.odoo.createInsuranceApplication(this.application.value)
+      let data = this.application.value
+      if (this.AppInfo != undefined) {
+        data.lob = this.applicationData.lob
+        data.product_id = this.applicationData.product_id
+        data.name = this.applicationData.name
+        data.phone = this.applicationData.phone
+        data.email = this.applicationData.email
+        data.target_price = this.applicationData.target_price
+
+      } else {
+        this.applicationData = this.application.value
+      }
+      this.odoo.createInsuranceApplication(data)
         .then(res => {
-          if (this.selectedLobName == "Motor" || this.selectedLobName == "Medical")
+          if (this.selectedLobName == "Motor" || this.selectedLobName == "Medical") {
             this.AppInfo = JSON.parse(JSON.stringify(res)).data.app[0]
+            if (this.AppInfo != undefined) {
+
+              this.application.get("lob").disable()
+              this.application.get("product_id").disable()
+              this.application.get("name").disable()
+              this.application.get("phone").disable()
+              this.application.get("email").disable()
+              this.application.get("target_price").disable()
+
+            }
+          } else {
+            this.router.navigateByUrl('/dashboard/ins-application-status')
+          }
           console.log(res)
         }).catch(error => {
           console.log(error)
@@ -202,5 +270,27 @@ export class InsuranceRequestComponent implements OnInit {
     });
 
     console.log(result);
+  }
+  rejectQuote() {
+    this.odoo.rejectPrice(this.AppInfo.id)
+      .then(res => {
+        console.log(res)
+        this.router.navigateByUrl('/dashboard/insurance-list')
+      }).catch(error => {
+        console.log(error)
+      })
+  }
+  acceptQuote() {
+    this.odoo.approvePrice(this.AppInfo.id)
+      .then(res => {
+        this.router.navigateByUrl('/dashboard/ins-application-status', {
+          state: {
+            app: this.AppInfo
+          }
+        })
+      }).catch(error => {
+        console.log(error)
+      })
+
   }
 }

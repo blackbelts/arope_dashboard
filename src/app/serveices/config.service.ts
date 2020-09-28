@@ -25,6 +25,7 @@ export class ConfigService {
   public insuranceSetupModel = "insurance.setup/"
   public userModel = "res.users/"
   public aropeBrokerModel = "arope.broker/"
+  public insuranceQuotationModel = "insurance.quotation/"
   /* methods names */
   public searchRead = "search_read"
   public searchCount = "search_count"
@@ -37,12 +38,14 @@ export class ConfigService {
   public getClaims = "get_claim"
   public getCollections = "get_unpaid"
   public createInsuranceApplication = "create_insurance_app"
+  public approvePrice = "approve_price"
+  public rejectPrice = "reject_price"
+  public insuranceApplicationsList = "get_insurance_app_list"
   /* filters */
   constructor(
     public shared: SharedService
   ) {
-    console.log(this.shared.user_id)
-
+    /* console.log(this.shared.user_id) */
   }
 
 
