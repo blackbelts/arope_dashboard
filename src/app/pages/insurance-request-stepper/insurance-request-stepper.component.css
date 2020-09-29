@@ -10,3 +10,19 @@ form .content {
   height: auto !important;
   min-height: auto !important;
 }
+
+.bs-stepper-header .active {
+  color: #007bff;
+}
+
+.bs-stepper-header .active span {
+  color: #007bff;
+}
+
+.bs-stepper .step-trigger {
+  padding: 10px !important;
+}
+
+.bs-stepper-label {
+  margin: 0.05rem;
+}

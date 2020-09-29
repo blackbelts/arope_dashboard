@@ -283,11 +283,7 @@ export class InsuranceRequestComponent implements OnInit {
   acceptQuote() {
     this.odoo.approvePrice(this.AppInfo.id)
       .then(res => {
-        this.router.navigateByUrl('/dashboard/ins-application-status', {
-          state: {
-            app: this.AppInfo
-          }
-        })
+        this.router.navigate(['/dashboard/ins-application-status', this.AppInfo.id])
       }).catch(error => {
         console.log(error)
       })

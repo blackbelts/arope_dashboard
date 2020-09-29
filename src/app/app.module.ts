@@ -16,12 +16,14 @@ import { from } from 'rxjs';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InsuranceRequestComponent } from './pages/insurance-request/insurance-request.component';
 import { CollectionsComponent } from './pages/collections/collections.component';
+import { SpinnerComponent } from './pages/spinner/spinner.component';
 /* import { RenewalsComponent } from './pages/renewals/renewals.component'; */
 @NgModule({
   declarations: [
     AppComponent,
     AdminLayoutComponent,
     LoginComponent,
+    SpinnerComponent,
     /*  RenewalsComponent, */
   ],
   imports: [

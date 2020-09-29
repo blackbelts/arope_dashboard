@@ -42,13 +42,19 @@ export class ConfigService {
   public rejectPrice = "reject_price"
   public insuranceApplicationsList = "get_insurance_app_list"
   public insuranceAppInfo = "get_app_info"
+  public rejectOffer = "reject_offer"
+  public approveOffer = "accept_offer"
+  public uploadDocuments = "upload_documents"
   /* filters */
+  /* files downloads */
+  public downloadFile = this.odooUrl + ":" + this.odooPort + "/web/content/"
   constructor(
     public shared: SharedService
   ) {
     /* console.log(this.shared.user_id) */
   }
 
-
-
+  getDownloadFileById(id) {
+    return (this.downloadFile + id + "?download=true")
+  }
 }

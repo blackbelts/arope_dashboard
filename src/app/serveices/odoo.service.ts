@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { ConfigService } from './config.service';
 import { HttpClient } from '@angular/common/http';
 import { SharedService } from './shared.service';
+import { resolve } from 'path';
+import { error } from 'protractor';
 
 @Injectable({
   providedIn: 'root'
@@ -324,5 +326,82 @@ export class OdooService {
       })
     })
   }
+  upload_file(file, id) {
+    return new Promise((resolve, reject) => {
+      this.http.post(
+        this.config.allMethode
+        + this.config.aropeBrokerModel
+        + 'upload_questionnaire', {
+        'paramlist': {
+          'data': {
+            file: file,
+            id: id
+          },
+        }
+      },
+        { headers: this.headers }
+      ).subscribe(res => {
+        resolve(res);
+      }, error => {
+        reject(error)
+      })
+    })
+  }
+  acceptOffer(offer_id) {
+    return new Promise((resolve, reject) => {
+      this.http.post(
+        this.config.allMethode
+        + this.config.aropeBrokerModel
+        + this.config.approveOffer, {
+        'paramlist': {
+          'id': offer_id
+        }
+      },
+        { headers: this.headers }
+      ).subscribe(res => {
+        resolve(res);
+      }, error => {
+        reject(error)
+      })
+    })
+
+  }
+  rejectOffer(offer_id) {
+    return new Promise((resolve, reject) => {
+      this.http.post(
+        this.config.allMethode
+        + this.config.aropeBrokerModel
+        + this.config.rejectOffer, {
+        'paramlist': {
+          'id': offer_id
+        }
+      },
+        { headers: this.headers }
+      ).subscribe(res => {
+        resolve(res);
+      }, error => {
+        reject(error)
+      })
+    })
+  }
+  uploadAttachmentsDocuments(data) {
+    return new Promise((resolve, reject) => {
+      this.http.post(
+        this.config.allMethode
+        + this.config.aropeBrokerModel
+        + this.config.uploadDocuments, {
+        'paramlist': {
+          'data': data
+        }
+      },
+        { headers: this.headers }
+      ).subscribe(res => {
+        resolve(res);
+      }, error => {
+        reject(error)
+      })
+    })
+  }
 }
+
 

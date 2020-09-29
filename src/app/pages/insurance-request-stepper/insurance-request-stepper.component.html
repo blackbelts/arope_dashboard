@@ -72,28 +72,28 @@
                 <div class="line" *ngIf="appInfo.lob[1]!='Fire'"></div>
                 <div class="step" data-target="#test-l-2">
                   <button class="step-trigger">
-                   <!--  <span class="bs-stepper-circle">2</span> -->
+                    <!-- <span class="bs-stepper-circle">1</span> -->
                     <span class="bs-stepper-label">Request For Offer</span>
                   </button>
                 </div>
                 <div class="line"></div>
                 <div class="step" data-target="#test-l-3">
                   <button class="step-trigger">
-                   <!--  <span class="bs-stepper-circle">3</span> -->
+                    <!-- <span class="bs-stepper-circle">2</span> -->
                     <span class="bs-stepper-label">Offering</span>
                   </button>
                 </div>
                 <div class="line"></div>
                 <div class="step" data-target="#test-l-4">
                   <button class="step-trigger">
-                   <!--  <span class="bs-stepper-circle">4</span> -->
+                    <!-- <span class="bs-stepper-circle">3</span> -->
                     <span class="bs-stepper-label">Issue In Progress</span>
                   </button>
                 </div>
                 <div class="line"></div>
                 <div class="step" data-target="#test-l-5">
                   <button class="step-trigger">
-                    <!-- <span class="bs-stepper-circle">5</span> -->
+                    <!--  <span class="bs-stepper-circle">4</span> -->
                     <span class="bs-stepper-label">Policy Issued</span>
                   </button>
                 </div>
@@ -166,35 +166,80 @@
 
                   </div>
                   <div id="test-l-2" class="content">
-                    <div class="form-group">
+                    <p class="lead">
+                      this is a message for get offer state
+                    </p>
+                    <!-- <div class="form-group">
                       <label for="exampleInputPassword1">Password</label>
                       <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+                    </div> -->
+                    <button (click)=" downloadFile(appInfo.questionnaire[0])" class="btn btn-primary">Download
+                      Questionnaire</button>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Upload Questionnaire</label>
+                      <input style="opacity: 1;position: relative;" type="file" class="form-control"
+                        placeholder="Upload Questionnaire" (change)=handleUpload($event) />
+                      <button (click)="upload()" class="btn btn-primary">Upload Questionnaire</button>
                     </div>
-                    <button (click)="next($event)" class="btn btn-primary">Next</button>
 
                   </div>
                   <div id="test-l-3" class="content">
-                    <div class="form-group">
-                      <label for="exampleInputPassword1">Password</label>
-                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+                    <p class="lead">
+                      this is a message for get offer state
+                    </p>
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead class=" text-primary">
+                          <th>NO</th>
+                          <th>Type</th>
+                          <th>Download</th>
+                          <th>Accept</th>
+                          <th>reject</th>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let offer of offers; let i=index">
+                            <td>{{i}}</td>
+                            <td>{{offer.type}}</td>
+                            <td>
+                              <button (click)="downloadFile(offer.file_id[0])" class="btn btn-primary">download</button>
+                            </td>
+                            <td>
+                              <button *ngIf="offer.state=='complete'" (click)="approveOffer(offer.id)"
+                                class="btn btn-primary">Approve</button>
+                              <span *ngIf="offer.state!='complete'">
+                                {{offer.state}}
+                              </span>
+                            </td>
+                            <td>
+                              <button *ngIf="offer.state=='complete'" (click)="rejectOffer(offer.id)"
+                                class="btn btn-primary">Reject</button>
+                              <span *ngIf="offer.state!='complete'">
+                                {{offer.state}}
+                              </span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
                     </div>
-                    <button (click)="next($event)" class="btn btn-primary">Next</button>
-
                   </div>
                   <div id="test-l-4" class="content">
-                    <div class="form-group">
-                      <label for="exampleInputPassword1">Password</label>
-                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+                    <p class="lead">
+                      this is a message for get offer state
+                    </p>
+                    <div *ngIf="attachments != undefined">
+                      <div class="form-group" *ngFor="let attachment of attachments">
+                        <label for="exampleInputPassword1">{{attachment.attachment}}</label>
+                        <input style="opacity: 1;position: relative;" type="file" class="form-control"
+                          placeholder="Upload Questionnaire" (change)=handleUploadAttachment($event,attachment.id) />
+                      </div>
+                      <button (click)="uploadAttachments()" class="btn btn-primary">Upload Files</button>
                     </div>
-                    <button (click)="next($event)" class="btn btn-primary">Next</button>
 
                   </div>
                   <div id="test-l-5" class="content">
-                    <div class="form-group">
-                      <label for="exampleInputPassword1">Password</label>
-                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
-                    </div>
-                    <button (click)="next($event)" class="btn btn-primary">Next</button>
+                    <p class="lead">
+                      this is a message for get offer state
+                    </p>
                   </div>
                 </form>
               </div>

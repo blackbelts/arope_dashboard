@@ -27,6 +27,7 @@
     width: 260px;
     z-index: 4;
     padding-bottom: 100px;
+    background-color: #073e89!important;
 
     .dropdown .dropdown-backdrop {
       display: none !important;
@@ -87,7 +88,7 @@
         font-size: 12px;
         padding: 10px 8px;
         line-height: 30px;
-        opacity: .7;
+        // opacity: .7;
       }
 
       .nav>li>a {
