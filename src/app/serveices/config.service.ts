@@ -41,6 +41,7 @@ export class ConfigService {
   public approvePrice = "approve_price"
   public rejectPrice = "reject_price"
   public insuranceApplicationsList = "get_insurance_app_list"
+  public insuranceAppInfo = "get_app_info"
   /* filters */
   constructor(
     public shared: SharedService

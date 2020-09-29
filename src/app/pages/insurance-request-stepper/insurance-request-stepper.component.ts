@@ -12,7 +12,16 @@ import { ConfigService } from 'app/serveices/config.service';
 export class InsuranceRequestStepperComponent implements OnInit {
   private stepper: Stepper;
   application_id
-  appInfo: any
+  appInfo: any = {
+    name: "",
+    phone: "",
+    email: "",
+    application_number: "",
+    application_date: "",
+    target_price: "",
+    lob: ["", ""],
+    product_id: ["", ""]
+  }
   constructor(
     private router: Router,
     public routerActive: ActivatedRoute,
@@ -20,22 +29,18 @@ export class InsuranceRequestStepperComponent implements OnInit {
     public config: ConfigService
   ) {
     this.application_id = this.routerActive.snapshot.paramMap.get("id")
-    console.log("application_id", this.application_id)
-    this.odoo.search(this.config.insuranceQuotationModel, [[
-      "id", "=", parseInt(this.application_id)
-    ]], false)
+    this.odoo.getApplicationInfo(parseInt(this.application_id))
       .then(res => {
-        this.appInfo=JSON.parse(JSON.stringify(res)).data[0]
-
-        console.log(res)
+        this.appInfo = JSON.parse(JSON.stringify(res)).data.app
+        console.log(this.appInfo)
       })
   }
 
   ngOnInit(): void {
-    /*  this.stepper = new Stepper(document.querySelector("#stepper1"), {
-       linear: false,
-       animation: true
-     }); */
+    this.stepper = new Stepper(document.querySelector("#application-stepper"), {
+      linear: false,
+      animation: true
+    });
   }
   next(e) {
     e.preventDefault()

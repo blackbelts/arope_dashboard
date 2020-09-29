@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-12" *ngIf="appInfo!=undefined">
+  <div class="col-md-12">
     <div class="card card-user">
       <div class="card-header">
         <h5 class="card-title">Customer Information</h5>
@@ -7,104 +7,201 @@
       <div class="card-body">
         <form>
           <div class="row">
+            <div class="col-md-6 px-3">
+              <div class="form-group">
+                <label>Line OF Business</label>
+                <input disabled type="text" class="form-control" placeholder="LOB" [value]="appInfo.lob[1]">
+              </div>
+            </div>
+            <div class="col-md-6 px-3">
+              <div class="form-group">
+                <label>Product</label>
+                <input disabled type="text" class="form-control" placeholder="product" [value]="appInfo.product_id[1]">
+              </div>
+            </div>
             <div class="col-md-4 px-3">
               <div class="form-group">
                 <label>Name</label>
-                <input type="text" class="form-control" placeholder="Name" [value]="appInfo.name">
+                <input disabled type="text" class="form-control" placeholder="Name" [value]="appInfo.name">
               </div>
             </div>
             <div class="col-md-4 px-3">
               <div class="form-group">
                 <label>Phone</label>
-                <input type="text" class="form-control" placeholder="phone" [value]="appInfo.phone">
+                <input disabled type="text" class="form-control" placeholder="phone" [value]="appInfo.phone">
               </div>
             </div>
             <div class="col-md-4 px-3">
               <div class="form-group">
                 <label>Email</label>
-                <input type="text" class="form-control" placeholder="email" [value]="appInfo.email">
+                <input disabled type="text" class="form-control" placeholder="email" [value]="appInfo.email">
               </div>
             </div>
             <div class="col-md-4 px-3">
               <div class="form-group">
                 <label>Application Number</label>
-                <input type="text" class="form-control" placeholder="email" [value]="appInfo.application_number">
+                <input disabled type="text" class="form-control" placeholder="email"
+                  [value]="appInfo.application_number">
               </div>
             </div>
             <div class="col-md-4 px-3">
               <div class="form-group">
                 <label>Application Date</label>
-                <input type="text" class="form-control" placeholder="email" [value]="appInfo.application_date">
+                <input disabled type="text" class="form-control" placeholder="email" [value]="appInfo.application_date">
               </div>
             </div>
             <div class="col-md-4 px-3">
               <div class="form-group">
                 <label>Target Premium</label>
-                <input type="text" class="form-control" placeholder="email" [value]="appInfo.target_price">
+                <input disabled type="text" class="form-control" placeholder="email" [value]="appInfo.target_price">
               </div>
             </div>
           </div>
+
         </form>
+        <div class="row">
+          <div class="col-md-12">
+            <div id="application-stepper" class="bs-stepper ">
+              <div class="bs-stepper-header">
+                <div class="step" data-target="#test-l-1" *ngIf="appInfo.lob[1]!='Fire'">
+                  <button class="step-trigger">
+                    <!-- <span class="bs-stepper-circle">1</span> -->
+                    <span class="bs-stepper-label">Quick Quote</span>
+                  </button>
+                </div>
+                <div class="line" *ngIf="appInfo.lob[1]!='Fire'"></div>
+                <div class="step" data-target="#test-l-2">
+                  <button class="step-trigger">
+                   <!--  <span class="bs-stepper-circle">2</span> -->
+                    <span class="bs-stepper-label">Request For Offer</span>
+                  </button>
+                </div>
+                <div class="line"></div>
+                <div class="step" data-target="#test-l-3">
+                  <button class="step-trigger">
+                   <!--  <span class="bs-stepper-circle">3</span> -->
+                    <span class="bs-stepper-label">Offering</span>
+                  </button>
+                </div>
+                <div class="line"></div>
+                <div class="step" data-target="#test-l-4">
+                  <button class="step-trigger">
+                   <!--  <span class="bs-stepper-circle">4</span> -->
+                    <span class="bs-stepper-label">Issue In Progress</span>
+                  </button>
+                </div>
+                <div class="line"></div>
+                <div class="step" data-target="#test-l-5">
+                  <button class="step-trigger">
+                    <!-- <span class="bs-stepper-circle">5</span> -->
+                    <span class="bs-stepper-label">Policy Issued</span>
+                  </button>
+                </div>
+              </div>
+              <div class="bs-stepper-content">
+                <form (ngSubmit)="onSubmit()">
+                  <div id="test-l-1" class="content" *ngIf="appInfo.lob[1]!='Fire'">
+                    <div class="row" *ngIf="appInfo.lob[1]=='Medical'">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label>Package For</label>
+                          <input disabled type="text" class="form-control" placeholder="Package For"
+                            [value]="appInfo.package" />
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label>product</label>
+                          <input disabled type="text" class="form-control" placeholder="Package For"
+                            [value]="appInfo.product[1]" />
+                        </div>
+                      </div>
+                      <div class="col-md-6" *ngIf="appInfo.package=='individual'">
+                        <div class="form-group">
+                          <label>Date of birth</label>
+                          <input disabled type="text" class="form-control" placeholder="Package For"
+                            [value]="appInfo.dob" />
+                        </div>
+                      </div>
+                      <div class="col-md-6 {{appInfo.package=='individual'?'col-md-6':'col-md-12'}}">
+                        <div class="form-group">
+                          <label>Premium</label>
+                          <input disabled type="text" class="form-control" placeholder="Package For"
+                            [value]="appInfo.price + ' EGP'" />
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="row" *ngIf="appInfo.lob[1]=='Motor'">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label>Brand</label>
+                          <input disabled type="text" class="form-control" placeholder="Brand"
+                            [value]="appInfo.brand" />
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label>Sum Insured</label>
+                          <input disabled type="text" class="form-control" placeholder="Sum Insured"
+                            [value]="appInfo.sum_insured" />
+                        </div>
+                      </div>
+                      <div class="col-md-6" *ngIf="appInfo.brand=='all brands'">
+                        <div class="form-group">
+                          <label>Deductible</label>
+                          <input disabled type="text" class="form-control" placeholder="Deductible"
+                            [value]="appInfo.deductible" />
+                        </div>
+                      </div>
+                      <div class="col-md-6 {{appInfo.brand=='all brands'?'col-md-6':'col-md-12'}}">
+                        <div class="form-group">
+                          <label>Premium</label>
+                          <input disabled type="text" class="form-control" placeholder="Package For"
+                            [value]="appInfo.price + ' EGP'" />
+                        </div>
+                      </div>
+
+                    </div>
+
+                  </div>
+                  <div id="test-l-2" class="content">
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Password</label>
+                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+                    </div>
+                    <button (click)="next($event)" class="btn btn-primary">Next</button>
+
+                  </div>
+                  <div id="test-l-3" class="content">
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Password</label>
+                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+                    </div>
+                    <button (click)="next($event)" class="btn btn-primary">Next</button>
+
+                  </div>
+                  <div id="test-l-4" class="content">
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Password</label>
+                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+                    </div>
+                    <button (click)="next($event)" class="btn btn-primary">Next</button>
+
+                  </div>
+                  <div id="test-l-5" class="content">
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Password</label>
+                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+                    </div>
+                    <button (click)="next($event)" class="btn btn-primary">Next</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-
   </div>
-  <!--  <div class="col-md-12">
-
-    <div id="stepper1" class="bs-stepper vertical">
-      <div class="bs-stepper-header">
-        <div class="step" data-target="#test-l-1">
-          <button class="step-trigger">
-            <span class="bs-stepper-circle">1</span>
-            <span class="bs-stepper-label">Email</span>
-          </button>
-        </div>
-        <div class="line"></div>
-        <div class="step" data-target="#test-l-2">
-          <button class="step-trigger">
-            <span class="bs-stepper-circle">2</span>
-            <span class="bs-stepper-label">Password</span>
-          </button>
-        </div>
-        <div class="line"></div>
-        <div class="step" data-target="#test-l-3">
-          <button class="step-trigger">
-            <span class="bs-stepper-circle">3</span>
-            <span class="bs-stepper-label">Validate</span>
-          </button>
-        </div>
-
-      </div>
-      <div class="bs-stepper-content">
-        <form (ngSubmit)="onSubmit()">
-          <div id="test-l-1" class="content">
-            <div class="form-group">
-              <label for="exampleInputPassword1">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
-            </div>
-            <button (click)="next($event)" class="btn btn-primary">Next</button>
-
-          </div>
-          <div id="test-l-2" class="content">
-            <div class="form-group">
-              <label for="exampleInputPassword1">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
-            </div>
-            <button (click)="next($event)" class="btn btn-primary">Next</button>
-
-          </div>
-          <div id="test-l-3" class="content">
-            <div class="form-group">
-              <label for="exampleInputPassword1">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
-            </div>
-            <button (click)="next($event)" class="btn btn-primary">Next</button>
-
-          </div>
-        </form>
-      </div>
-    </div>
-
-  </div> -->
-
 </div>
